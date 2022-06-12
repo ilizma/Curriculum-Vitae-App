@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name" translatable="false">BaseProject</string>
+
+    <string name="crash_activity_message">An unexpected error has occurred. Sorry for the inconvenience.</string>
+    <string name="crash_activity_restart_button">RESTART APP</string>
+    <string name="crash_activity_logcat_button" translatable="false">LOGCAT</string>
+    <string name="crash_activity_clipboard_button">COPY TO CLIPBOARD</string>
+    <string name="crash_activity_snackbar_successful_title">Copied</string>
+    <string name="crash_activity_snackbar_successful_action">OKAY</string>
+
+    <string name="no_internet">No Internet connection</string>
+    <string name="timeout_message">Oops! Slow connection</string>
+    <string name="unknown_error">Unknown error</string>
+    <string name="unknown_reason">Unknown reason</string>
+    <string name="retry">Retry</string>
+    <string name="empty_list">Empty list</string>
+
+</resources>
