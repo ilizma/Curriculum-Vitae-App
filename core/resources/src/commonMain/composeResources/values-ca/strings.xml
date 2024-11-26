@@ -1,0 +1,22 @@
+<resources>
+    <string name="title_personal">Dades personals</string>
+    <string name="title_education">Formació</string>
+    <string name="title_work">Exp. professional</string>
+
+    <string name="title_complementary_education">Educació complementària</string>
+
+    <string name="generic_error">S\'ha produït un error</string>
+    <string name="no_internet">No hi ha connexió a Internet</string>
+    <string name="timeout_message">Vaja! Connexió lenta</string>
+    <string name="unknown_error">Error desconegut</string>
+
+    <string name="retry">Reintentar</string>
+
+    <string name="phone">Telèfon</string>
+    <string name="email">Correu electrònic</string>
+    <string name="address">Direcció</string>
+    <string name="born_date">Data de naixement</string>
+    <string name="skills">Aptituds</string>
+
+    <string name="end_date_currently">actualment</string>
+</resources>

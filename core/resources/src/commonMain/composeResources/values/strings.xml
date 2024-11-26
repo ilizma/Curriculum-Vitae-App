@@ -1,0 +1,22 @@
+<resources>
+    <string name="title_personal">Personal data</string>
+    <string name="title_education">Academic</string>
+    <string name="title_work">Prof. experience</string>
+
+    <string name="title_complementary_education">Complementary education</string>
+
+    <string name="generic_error">An error occurred</string>
+    <string name="no_internet">No Internet connection</string>
+    <string name="timeout_message">Oops! Slow connection</string>
+    <string name="unknown_error">Unknown error</string>
+
+    <string name="retry">Retry</string>
+
+    <string name="phone">Phone</string>
+    <string name="email">e-mail</string>
+    <string name="address">Address</string>
+    <string name="born_date">Born date</string>
+    <string name="skills">Skills</string>
+
+    <string name="end_date_currently">currently</string>
+</resources>

@@ -1,0 +1,129 @@
+[versions]
+## region config
+android-minSdk = "21"
+android-compileSdk = "35"
+android-targetSdk = "35"
+## endregion
+## region libraries
+kotlin-version = "2.0.21"
+serialization-version = "1.7.3"
+coroutines-version = "1.9.0"
+appcompat-version = "1.7.0"
+ktx-version = "1.15.0"
+splash-version = "1.0.1"
+lifecycle-version = "2.8.7"
+jetbrains-lifecycle-version = "2.8.3"
+customactivityoncrash-version = "2.4.0"
+activity-version = "1.9.3"
+navigation-compose-version = "2.8.0-alpha10"
+annotation-version = "1.9.1"
+browser-version = "1.8.0"
+koin-version = "4.0.0"
+immutable-version = "0.3.8"
+firebase-version = "2.1.0"
+material-version = "1.12.0"
+lottie-version = "6.6.0"
+junit-version = "4.13.2"
+junit-android-version = "1.2.1"
+espresso-version = "3.6.1"
+mockk-version = "1.13.11"
+junit-jupiter-version = "5.10.2"
+ktorfit-version = "2.2.0"
+ktor-version = "3.0.1"
+ui-tooling = "1.7.5"
+coil-compose-version = "3.0.3"
+## endregion
+## region plugins
+agp-version = "8.7.2"
+compose-multiplatform-version = "1.7.0"
+ksp-plugin-version = "2.0.21-1.0.28"
+google-services-plugin-version = "4.4.2"
+crashlytics-plugin-version = "3.0.2"
+junit5-plugin-version = "1.9.3.0"
+buildkonfig-plugin-version = "0.15.2"
+## endregion
+
+[libraries]
+## region coroutines
+coroutines = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines-version" }
+## endregion
+## region androidX
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat-version" }
+core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "ktx-version" }
+splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splash-version" }##add?
+activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity-version" }
+activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-version" }##add?
+navigation-compose = { group = "org.jetbrains.androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose-version" }
+annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation-version" }
+browser = { group = "androidx.browser", name = "browser", version.ref = "browser-version" }##add?
+## endregion
+## region lifecycle
+lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-version" }
+lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "jetbrains-lifecycle-version" }
+lifecycle-common = { group = "androidx.lifecycle", name = "lifecycle-common-java8", version.ref = "lifecycle-version" }
+lifecycle-runtime-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "jetbrains-lifecycle-version" }
+## endregion
+## region customactivityoncrash
+customactivityoncrash = { group = "cat.ereza", name = "customactivityoncrash", version.ref = "customactivityoncrash-version" }
+## endregion
+## region di
+koin-bom = { group = "io.insert-koin", name = "koin-bom", version.ref = "koin-version" }
+koin-core = { group = "io.insert-koin", name = "koin-core" }
+koin-core-viewmodel = { group = "io.insert-koin", name = "koin-core-viewmodel" }
+koin-android = { group = "io.insert-koin", name = "koin-android" }
+koin-compose = { group = "io.insert-koin", name = "koin-compose" }
+koin-compose-viewmodel = { group = "io.insert-koin", name = "koin-compose-viewmodel" }
+immutable = { group = "org.jetbrains.kotlinx", name = "kotlinx-collections-immutable", version.ref = "immutable-version" }
+## endregion
+## region firebase
+firebase-analytics = { group = "dev.gitlive", name = "firebase-analytics", version.ref = "firebase-version" }
+firebase-crashlytics = { group = "dev.gitlive", name = "firebase-crashlytics", version.ref = "firebase-version" }
+firebase-firestore = { group = "dev.gitlive", name = "firebase-firestore", version.ref = "firebase-version" }
+## endregion
+## region design
+material = { group = "com.google.android.material", name = "material", version.ref = "material-version" }
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie-version" }
+## endregion
+## region coil
+coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil-compose-version" }
+coil-network-ktor = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coil-compose-version" }
+## endregion
+## region network
+ktor-client-okhttp = { group = "io.ktor", name = "ktor-client-okhttp", version.ref = "ktor-version" }
+ktor-client-darwin = { group = "io.ktor", name = "ktor-client-darwin", version.ref = "ktor-version" }
+ktor-json-serialization = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor-version" }
+serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization-version" }
+## endregion
+## region unittest
+junit = { group = "junit", name = "junit", version.ref = "junit-version" }##add?
+junit-android = { group = "androidx.test.ext", name = "junit", version.ref = "junit-android-version" }##add?
+espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-version" }##add?
+compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }##add?
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk-version" }##
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk-version" }##
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-version" }##add?
+junit-api = { group = "org.junit.jupiter", name = "junit-jupiter-api", version.ref = "junit-jupiter-version" }##
+junit-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine", version.ref = "junit-jupiter-version" }##
+## endregion
+## region unittest
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }##add?
+compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "ui-tooling" }##add?
+## endregion
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "agp-version" }
+android-library = { id = "com.android.library", version.ref = "agp-version" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform-version" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp-plugin-version" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin-version" }
+compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin-version" }
+google-services = { id = "com.google.gms.google-services", version.ref = "google-services-plugin-version" }
+crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics-plugin-version" }
+junit5 = { id = "de.mannodermaus.android-junit5", version.ref = "junit5-plugin-version" }
+ktorfit = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorfit-version" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin-version" }
+buildkonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildkonfig-plugin-version" }
+
+[bundles]

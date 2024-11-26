@@ -1,0 +1,22 @@
+<resources>
+    <string name="title_personal">Datu pertsonalak</string>
+    <string name="title_education">Hezkuntza</string>
+    <string name="title_work">Esp. profesionala</string>
+
+    <string name="title_complementary_education">Hezkuntza osagarria</string>
+
+    <string name="generic_error">Errore bat gertatu da</string>
+    <string name="no_internet">Interneteko konexiorik ez dago</string>
+    <string name="timeout_message">Ai ene! Konexio motela</string>
+    <string name="unknown_error">Errore zezaguna</string>
+
+    <string name="retry">Berriro</string>
+
+    <string name="phone">Telefono</string>
+    <string name="email">Korreo elektronikoa</string>
+    <string name="address">Helbidea</string>
+    <string name="born_date">Jaioteguna</string>
+    <string name="skills">Gaitasunak</string>
+
+    <string name="end_date_currently">gaur egun</string>
+</resources>
