@@ -1,6 +1,7 @@
 package com.ilizma.resources.ui.theme
 
 import androidx.compose.ui.graphics.Color
+import com.ilizma.resources.BuildKonfig
 
 val Black = Color(0xFF000000)
 val BackgroundNight = Black
@@ -12,4 +13,4 @@ val SecondaryDay = Color(0xFFFFFBFE)
 
 val Grey = Color(0xFFF2F2F2)
 val Link = Color(0xFF0000EE)
-expect val Main: Color
+val Main = Color(BuildKonfig.MAIN_COLOR)

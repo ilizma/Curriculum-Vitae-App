@@ -1,8 +1,13 @@
+
+import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.LONG
+import java.util.regex.Pattern
+
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose)
+    alias(libs.plugins.buildkonfig)
 }
 
 kotlin {
@@ -58,6 +63,49 @@ android {
         }
     }
 
+}
+
+project.extra.set("buildkonfig.flavor", currentBuildVariant())
+
+private fun Project.currentBuildVariant(): String {
+    val variants = setOf("lrhr", "ilizma")
+    return getAndroidBuildVariantOrNull()
+        ?: System.getenv()["VARIANT"]
+            .toString()
+            .takeIf { it in variants } ?: "lrhr"
+}
+
+private fun Project.getAndroidBuildVariantOrNull(): String? {
+    val variants = setOf("lrhr", "ilizma")
+    val taskRequestsStr = gradle.startParameter.taskRequests.toString()
+    val pattern: Pattern = if (taskRequestsStr.contains("assemble")) {
+        Pattern.compile("assemble(\\w+)(Release|Debug)")
+    } else {
+        Pattern.compile("bundle(\\w+)(Release|Debug)")
+    }
+
+    val matcher = pattern.matcher(taskRequestsStr)
+    val variant = if (matcher.find()) matcher.group(1).lowercase() else null
+    return if (variant in variants) {
+        variant
+    } else {
+        null
+    }
+}
+
+buildkonfig {
+    packageName = "com.ilizma.resources"
+
+    defaultConfigs {
+        buildConfigField(LONG, "MAIN_COLOR", "0xFFC8FF19")
+    }
+
+    defaultConfigs("lrhr") {
+        buildConfigField(LONG, "MAIN_COLOR", "0xFFC8FF19")
+    }
+    defaultConfigs("ilizma") {
+        buildConfigField(LONG, "MAIN_COLOR", "0xFFD9E3F2")
+    }
 }
 
 compose.resources {
