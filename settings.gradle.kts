@@ -43,10 +43,6 @@ include(
     ":resources",
     // endregion
 
-    // region Api
-    ":api",
-    // endregion
-
     // region Main
     ":main-di",
     ":main-view",
@@ -112,10 +108,6 @@ project(":view-base").projectDir = File("core/view-base")
 // endregion CORE
 
 // region FEATURES
-// region Api
-project(":api").projectDir = File("features/api-feature/api")
-// endregion Api
-
 // region Main
 project(":main-di").projectDir = File("features/main-feature/main-di")
 project(":main-view").projectDir = File("features/main-feature/main-view")

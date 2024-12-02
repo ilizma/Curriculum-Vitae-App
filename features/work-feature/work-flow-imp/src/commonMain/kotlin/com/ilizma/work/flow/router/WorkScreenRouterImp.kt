@@ -5,11 +5,13 @@ import com.ilizma.work.presentation.model.WorkScreenNavigationAction
 import com.ilizma.work.presentation.model.WorkScreenNavigationAction.Back
 import com.ilizma.work.presentation.viewmodel.WorkScreenViewModel
 import com.ilizma.work.view.router.WorkScreenRouter
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class WorkScreenRouterImp(
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Main,
     private val backCloseNavigator: WorkScreenBackCloseNavigator,
 ) : WorkScreenRouter {
 
@@ -18,7 +20,7 @@ class WorkScreenRouterImp(
         coroutineScope: CoroutineScope,
         viewModel: WorkScreenViewModel,
     ) {
-        coroutineScope.launch(Dispatchers.Main) {
+        coroutineScope.launch(dispatcher) {
             viewModel.navigationAction.collect {
                 onNavigationAction(
                     action = it,

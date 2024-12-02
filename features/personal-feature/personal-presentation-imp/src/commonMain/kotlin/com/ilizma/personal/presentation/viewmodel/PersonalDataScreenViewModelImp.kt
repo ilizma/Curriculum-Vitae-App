@@ -13,6 +13,7 @@ import com.ilizma.personal.presentation.model.PersonalDataScreenNavigationAction
 import com.ilizma.personal.presentation.model.PersonalDataState
 import com.ilizma.resources.Res
 import com.ilizma.resources.unknown_error
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
@@ -22,6 +23,7 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 
 class PersonalDataScreenViewModelImp(
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
     private val personalDataUseCase: PersonalDataUseCase,
     private val descriptionUseCase: DescriptionUseCase,
     private val skillsUseCase: SkillsUseCase,
@@ -58,7 +60,7 @@ class PersonalDataScreenViewModelImp(
     private fun onPhone(
         phone: String,
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             PersonalDataScreenNavigationAction.Phone(
                 phone = phone
             ).let { _navigationAction.emit(it) }
@@ -68,7 +70,7 @@ class PersonalDataScreenViewModelImp(
     private fun onEmail(
         email: String,
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             PersonalDataScreenNavigationAction.Email(
                 email = email
             ).let { _navigationAction.emit(it) }
@@ -76,7 +78,7 @@ class PersonalDataScreenViewModelImp(
     }
 
     private fun getPersonalData() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             try {
                 onPersonalDataState(
                     personalData = personalDataUseCase(),
@@ -91,7 +93,7 @@ class PersonalDataScreenViewModelImp(
     }
 
     private fun onBack() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             _navigationAction.emit(PersonalDataScreenNavigationAction.Back)
         }
     }

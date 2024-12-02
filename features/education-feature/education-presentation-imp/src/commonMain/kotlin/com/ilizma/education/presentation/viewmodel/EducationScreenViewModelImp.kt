@@ -12,6 +12,7 @@ import com.ilizma.education.presentation.model.EducationScreenNavigationAction.B
 import com.ilizma.education.presentation.model.EducationState
 import com.ilizma.resources.Res
 import com.ilizma.resources.unknown_error
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
@@ -21,6 +22,7 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 
 class EducationScreenViewModelImp(
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
     private val educationUseCase: EducationUseCase,
     private val complementaryEducationUseCase: ComplementaryEducationUseCase,
     private val mapper: EducationMapper,
@@ -45,11 +47,11 @@ class EducationScreenViewModelImp(
     }
 
     private fun getEducation() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             try {
                 onEducationState(
-                    educationUseCase(),
-                    complementaryEducationUseCase(),
+                    educationList = educationUseCase(),
+                    complementaryEducationList = complementaryEducationUseCase(),
                 )
             } catch (e: Exception) {
                 onError(e)
@@ -58,7 +60,7 @@ class EducationScreenViewModelImp(
     }
 
     private fun onBack() {
-        viewModelScope.launch(Dispatchers.IO) { _navigationAction.emit(Back) }
+        viewModelScope.launch(dispatcher) { _navigationAction.emit(Back) }
     }
 
     private suspend fun onEducationState(

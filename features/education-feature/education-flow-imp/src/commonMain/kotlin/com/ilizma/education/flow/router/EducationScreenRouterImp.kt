@@ -5,11 +5,13 @@ import com.ilizma.education.presentation.model.EducationScreenNavigationAction
 import com.ilizma.education.presentation.model.EducationScreenNavigationAction.Back
 import com.ilizma.education.presentation.viewmodel.EducationScreenViewModel
 import com.ilizma.education.view.router.EducationScreenRouter
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class EducationScreenRouterImp(
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Main,
     private val backCloseNavigator: EducationScreenBackCloseNavigator,
 ) : EducationScreenRouter {
 
@@ -18,7 +20,7 @@ class EducationScreenRouterImp(
         coroutineScope: CoroutineScope,
         viewModel: EducationScreenViewModel,
     ) {
-        coroutineScope.launch(Dispatchers.Main) {
+        coroutineScope.launch(dispatcher) {
             viewModel.navigationAction.collect {
                 onNavigationAction(
                     action = it,

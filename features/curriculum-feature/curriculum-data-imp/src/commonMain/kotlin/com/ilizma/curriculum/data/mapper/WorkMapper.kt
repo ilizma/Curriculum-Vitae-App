@@ -1,6 +1,6 @@
 package com.ilizma.curriculum.data.mapper
 
-import com.ilizma.api.model.WorkDTO
+import com.ilizma.curriculum.data.model.WorkDTO
 import com.ilizma.curriculum.domain.model.Work
 import com.ilizma.curriculum.data.model.Work as DataWork
 

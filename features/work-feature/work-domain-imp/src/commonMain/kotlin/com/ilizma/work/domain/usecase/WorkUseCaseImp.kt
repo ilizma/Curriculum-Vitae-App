@@ -11,6 +11,7 @@ class WorkUseCaseImp(
 
     override suspend fun invoke(
     ): List<Work> = repository.get()
+        .let { it.work }
         .let { mapper.from(it) }
 
 }

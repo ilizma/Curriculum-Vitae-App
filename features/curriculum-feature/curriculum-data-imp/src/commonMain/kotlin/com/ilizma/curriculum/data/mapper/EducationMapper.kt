@@ -1,6 +1,6 @@
 package com.ilizma.curriculum.data.mapper
 
-import com.ilizma.api.model.EducationDTO
+import com.ilizma.curriculum.data.model.EducationDTO
 import com.ilizma.curriculum.domain.model.Education
 import com.ilizma.curriculum.data.model.Education as DataEducation
 

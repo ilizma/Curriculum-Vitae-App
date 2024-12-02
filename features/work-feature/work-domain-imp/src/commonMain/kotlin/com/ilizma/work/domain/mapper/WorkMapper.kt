@@ -1,13 +1,13 @@
 package com.ilizma.work.domain.mapper
 
-import com.ilizma.curriculum.domain.model.CurriculumVitae
 import com.ilizma.work.domain.model.Work
+import com.ilizma.curriculum.domain.model.Work  as CVWork
 
 class WorkMapper {
 
     fun from(
-        state: CurriculumVitae
-    ): List<Work> = state.work.map {
+        data: List<CVWork>
+    ): List<Work> = data.map {
         Work(
             title = it.title,
             task = it.task,

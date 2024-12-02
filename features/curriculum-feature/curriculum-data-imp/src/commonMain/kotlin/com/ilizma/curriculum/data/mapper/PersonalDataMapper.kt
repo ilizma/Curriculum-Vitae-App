@@ -1,6 +1,6 @@
 package com.ilizma.curriculum.data.mapper
 
-import com.ilizma.api.model.PersonalDataDTO
+import com.ilizma.curriculum.data.model.PersonalDataDTO
 import com.ilizma.curriculum.domain.model.PersonalData
 import com.ilizma.curriculum.data.model.PersonalData as DataPersonalData
 

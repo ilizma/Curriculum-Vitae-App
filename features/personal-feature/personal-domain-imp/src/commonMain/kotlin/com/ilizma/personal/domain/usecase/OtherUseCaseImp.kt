@@ -11,6 +11,7 @@ class OtherUseCaseImp(
 
     override suspend fun invoke(
     ): List<Other> = repository.get()
+        .let { it.other }
         .let { mapper.from(it) }
 
 }

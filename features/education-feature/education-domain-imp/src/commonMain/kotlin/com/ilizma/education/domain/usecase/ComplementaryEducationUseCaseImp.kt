@@ -11,6 +11,7 @@ class ComplementaryEducationUseCaseImp(
 
     override suspend fun invoke(
     ): List<ComplementaryEducation> = repository.get()
+        .let { it.complementaryEducation }
         .let { mapper.from(it) }
 
 }

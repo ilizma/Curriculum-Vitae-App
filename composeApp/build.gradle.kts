@@ -1,4 +1,3 @@
-
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -59,9 +58,6 @@ kotlin {
             implementation(libs.lifecycle.runtime.compose)
             implementation(libs.firebase.crashlytics)
             implementation(libs.firebase.analytics)
-
-            // api
-            implementation(project(":api"))
 
             // View
             implementation(project(":view-base"))

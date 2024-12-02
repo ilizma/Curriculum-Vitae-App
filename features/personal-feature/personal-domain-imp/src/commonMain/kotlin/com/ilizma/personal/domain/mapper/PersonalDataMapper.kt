@@ -1,13 +1,13 @@
 package com.ilizma.personal.domain.mapper
 
-import com.ilizma.curriculum.domain.model.CurriculumVitae
 import com.ilizma.personal.domain.model.PersonalData
+import com.ilizma.curriculum.domain.model.PersonalData as CVPersonalData
 
 class PersonalDataMapper {
 
     fun from(
-        state: CurriculumVitae
-    ): PersonalData = state.personalData.let {
+        personalData: CVPersonalData
+    ): PersonalData = personalData.let {
         PersonalData(
             photo = it.photo,
             name = it.name,

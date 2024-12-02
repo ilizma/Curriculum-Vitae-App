@@ -1,11 +1,11 @@
 package com.ilizma.curriculum.data.datasource
 
-import com.ilizma.api.model.CurriculumVitaeDTO
 import com.ilizma.curriculum.data.mapper.CurriculumVitaeMapper
 import com.ilizma.curriculum.data.model.CurriculumVitae
+import com.ilizma.curriculum.data.model.CurriculumVitaeDTO
 import dev.gitlive.firebase.firestore.FirebaseFirestore
 
-private const val CVS_COLLECTION = "CVs"
+internal const val CVS_COLLECTION = "CVs"
 
 class CurriculumVitaeDataSourceImp(
     private val cvId: String,

@@ -1,6 +1,6 @@
 package com.ilizma.curriculum.data.mapper
 
-import com.ilizma.api.model.CurriculumVitaeDTO
+import com.ilizma.curriculum.data.model.CurriculumVitaeDTO
 import com.ilizma.curriculum.domain.model.CurriculumVitae
 import com.ilizma.curriculum.data.model.CurriculumVitae as DataCurriculumVitae
 
@@ -29,17 +29,17 @@ class CurriculumVitaeMapper(
     )
 
     fun from(
-        state: DataCurriculumVitae,
+        data: DataCurriculumVitae,
     ): CurriculumVitae = CurriculumVitae(
-        personalData = personalDataMapper.from(state.personalData),
-        education = state.education.map { educationMapper.from(it) },
-        complementaryEducation = state.complementaryEducation.map {
+        personalData = personalDataMapper.from(data.personalData),
+        education = data.education.map { educationMapper.from(it) },
+        complementaryEducation = data.complementaryEducation.map {
             complementaryEducationMapper.from(it)
         },
-        work = state.work.map { workMapper.from(it) },
-        description = state.description,
-        skills = state.skills,
-        other = state.other.map { otherMapper.from(it) }
+        work = data.work.map { workMapper.from(it) },
+        description = data.description,
+        skills = data.skills,
+        other = data.other.map { otherMapper.from(it) }
     )
 
     private fun nullParameterException(

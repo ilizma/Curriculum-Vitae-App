@@ -10,6 +10,7 @@ import com.ilizma.work.presentation.model.WorkIntent
 import com.ilizma.work.presentation.model.WorkScreenNavigationAction
 import com.ilizma.work.presentation.model.WorkScreenNavigationAction.Back
 import com.ilizma.work.presentation.model.WorkState
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.flow.Flow
@@ -19,10 +20,11 @@ import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 
 class WorkScreenViewModelImp(
+    private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
     private val useCase: WorkUseCase,
     private val mapper: WorkMapper,
     private val isDebug: Boolean,
-    private val _educationState: MutableStateFlow<WorkState>,
+    private val _workState: MutableStateFlow<WorkState>,
     private val _navigationAction: MutableSharedFlow<WorkScreenNavigationAction>,
 ) : WorkScreenViewModel() {
 
@@ -32,7 +34,7 @@ class WorkScreenViewModelImp(
         getWork()
     }
 
-    override val workState: Flow<WorkState> = _educationState
+    override val workState: Flow<WorkState> = _workState
 
     override fun onIntent(intent: WorkIntent) {
         when (intent) {
@@ -42,7 +44,7 @@ class WorkScreenViewModelImp(
     }
 
     private fun getWork() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(dispatcher) {
             try {
                 useCase()
                     .let { onEducationState(it) }
@@ -53,14 +55,14 @@ class WorkScreenViewModelImp(
     }
 
     private fun onBack() {
-        viewModelScope.launch(Dispatchers.IO) { _navigationAction.emit(Back) }
+        viewModelScope.launch(dispatcher) { _navigationAction.emit(Back) }
     }
 
     private suspend fun onEducationState(
         workList: List<Work>,
     ) {
         mapper.from(workList)
-            .let { _educationState.emit(it) }
+            .let { _workState.emit(it) }
 
     }
 
@@ -71,7 +73,7 @@ class WorkScreenViewModelImp(
             true -> throwable.message ?: getString(Res.string.unknown_error)
             false -> getString(Res.string.unknown_error)
         }.let { WorkState.Error(it) }
-            .let { _educationState.emit(it) }
+            .let { _workState.emit(it) }
     }
 
 }

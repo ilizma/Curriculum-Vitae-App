@@ -7,11 +7,13 @@ import com.ilizma.personal.presentation.model.PersonalDataScreenNavigationAction
 import com.ilizma.personal.presentation.model.PersonalDataScreenNavigationAction.Back
 import com.ilizma.personal.presentation.viewmodel.PersonalDataScreenViewModel
 import com.ilizma.personal.view.router.PersonalDataScreenRouter
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class PersonalDataScreenRouterImp(
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Main,
     private val phoneNavigator: PhoneNavigator,
     private val emailNavigator: EmailNavigator,
     private val backCloseNavigator: PersonalDataScreenBackCloseNavigator,
@@ -22,7 +24,7 @@ class PersonalDataScreenRouterImp(
         coroutineScope: CoroutineScope,
         viewModel: PersonalDataScreenViewModel,
     ) {
-        coroutineScope.launch(Dispatchers.Main) {
+        coroutineScope.launch(dispatcher) {
             viewModel.navigationAction.collect {
                 onNavigationAction(
                     action = it,
