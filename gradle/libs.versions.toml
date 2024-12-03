@@ -28,8 +28,12 @@ junit-android-version = "1.2.1"
 espresso-version = "3.6.1"
 mockk-version = "1.13.13"
 ktor-version = "3.0.1"
-ui-tooling = "1.7.5"
+uiTestJunit4AndroidVersion = "1.7.5"
+uiTestManifestVersion = "1.7.5"
 coil-compose-version = "3.0.3"
+firebaseAnalyticsVersion = "22.1.0" #Do not update the library because gitlive is using this version
+firebaseCommonKtxVersion = "21.0.0" #Do not update the library because gitlive is using this version
+firebaseCrashlyticsKtxVersion = "19.0.3" #Do not update the library because gitlive is using this version
 ## endregion
 ## region plugins
 agp-version = "8.7.2"
@@ -93,6 +97,7 @@ serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serializ
 ## endregion
 ## region unittest
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk-version" }
+mockk-android = { group = "io.mockk", name = "mockk-android", version.ref = "mockk-version" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin-version" }
 kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlin-version" }
 junit = { group = "junit", name = "junit", version.ref = "junit-version" }##add?
@@ -100,13 +105,13 @@ junit-android = { group = "androidx.test.ext", name = "junit", version.ref = "ju
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso-version" }##add?
 
 coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines-version" }##add?
-
-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }##add?
 ## endregion
-## region unittest
-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }##add?
-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "ui-tooling" }##add?
+## region uitest
+ui-test-junit4-android = { group = "androidx.compose.ui", name = "ui-test-junit4-android", version.ref = "uiTestJunit4AndroidVersion" }
+ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest", version.ref = "uiTestManifestVersion" }
+firebase-common-ktx = { module = "com.google.firebase:firebase-common-ktx", version.ref = "firebaseCommonKtxVersion" }
+firebase-crashlytics-ktx = { module = "com.google.firebase:firebase-crashlytics-ktx", version.ref = "firebaseCrashlyticsKtxVersion" }
+google-firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebaseAnalyticsVersion" }
 ## endregion
 
 [plugins]

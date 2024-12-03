@@ -34,6 +34,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -51,6 +52,23 @@ import coil3.util.DebugLogger
 import com.ilizma.personal.presentation.model.PersonalDataIntent
 import com.ilizma.personal.presentation.model.PersonalDataState
 import com.ilizma.personal.presentation.viewmodel.PersonalDataScreenViewModel
+import com.ilizma.personal.view.utils.ERROR_TAG
+import com.ilizma.personal.view.utils.LOADING_TAG
+import com.ilizma.personal.view.utils.PERSONAL_ADDRESS_TAG
+import com.ilizma.personal.view.utils.PERSONAL_BORN_DATE_TAG
+import com.ilizma.personal.view.utils.PERSONAL_CITY_TAG
+import com.ilizma.personal.view.utils.PERSONAL_DESCRIPTION_TAG
+import com.ilizma.personal.view.utils.PERSONAL_EMAIL_TAG
+import com.ilizma.personal.view.utils.PERSONAL_IMAGE_TAG
+import com.ilizma.personal.view.utils.PERSONAL_NAME_TAG
+import com.ilizma.personal.view.utils.PERSONAL_OTHER_DESCRIPTION_TAG
+import com.ilizma.personal.view.utils.PERSONAL_OTHER_LINK_TAG
+import com.ilizma.personal.view.utils.PERSONAL_OTHER_TITLE_TAG
+import com.ilizma.personal.view.utils.PERSONAL_PHONE_TAG
+import com.ilizma.personal.view.utils.PERSONAL_POSTAL_CODE_TAG
+import com.ilizma.personal.view.utils.PERSONAL_SKILLS_TAG
+import com.ilizma.personal.view.utils.PERSONAL_SURNAME2_TAG
+import com.ilizma.personal.view.utils.PERSONAL_SURNAME_TAG
 import com.ilizma.resources.Res
 import com.ilizma.resources.address
 import com.ilizma.resources.born_date
@@ -85,7 +103,7 @@ fun PersonalDataScreen(
 }
 
 @Composable
-private fun ScreenState(
+internal fun ScreenState(
     state: PersonalDataState,
     snackbarHostState: SnackbarHostState,
     paddingValues: PaddingValues,
@@ -105,43 +123,9 @@ private fun ScreenState(
             onRetry = { onIntent(PersonalDataIntent.Retry) },
         )
 
-        PersonalDataState.Loading -> Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxSize()
-                .padding(paddingValues),
-        ) {
-            CircularProgressIndicator(
-                color = MaterialTheme.colorScheme.onPrimary,
-            )
-        }
+        PersonalDataState.Loading -> Loading(paddingValues)
     }
 
-}
-
-@Composable
-private fun ErrorSnackbar(
-    paddingValues: PaddingValues,
-    state: PersonalDataState.Error,
-    snackbarHostState: SnackbarHostState,
-    onRetry: () -> Unit
-) {
-    Box(
-        modifier = Modifier.fillMaxSize()
-            .padding(paddingValues),
-    ) {
-        val message = state.message
-        val actionLabel = stringResource(Res.string.retry)
-        LaunchedEffect(snackbarHostState) {
-            snackbarHostState.showSnackbar(
-                message = message,
-                actionLabel = actionLabel,
-            ).let { snackbarResult ->
-                if (snackbarResult == SnackbarResult.ActionPerformed) {
-                    onRetry()
-                }
-            }
-        }
-    }
 }
 
 @Composable
@@ -185,7 +169,8 @@ private fun Content(
                         AsyncImage(
                             modifier = Modifier.fillMaxWidth()
                                 .padding(horizontal = 64.dp)
-                                .clip(RoundedCornerShape(8.dp)),
+                                .clip(RoundedCornerShape(8.dp))
+                                .testTag(PERSONAL_IMAGE_TAG),
                             contentScale = ContentScale.Crop,
                             model = state.photo,
                             contentDescription = state.name
@@ -196,7 +181,8 @@ private fun Content(
                         verticalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
                         Text(
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier.fillMaxWidth()
+                                .testTag(PERSONAL_NAME_TAG),
                             text = state.name,
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold
@@ -206,11 +192,13 @@ private fun Content(
                             horizontalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             Text(
+                                modifier = Modifier.testTag(PERSONAL_SURNAME_TAG),
                                 text = state.surname,
                                 fontSize = 24.sp,
                                 fontWeight = FontWeight.Bold
                             )
                             Text(
+                                modifier = Modifier.testTag(PERSONAL_SURNAME2_TAG),
                                 text = state.surname2,
                                 fontSize = 24.sp,
                                 fontWeight = FontWeight.Bold
@@ -241,7 +229,8 @@ private fun Content(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth()
+                            .testTag(PERSONAL_PHONE_TAG),
                         text = buildAnnotatedString {
                             withLink(LinkAnnotation.Clickable(tag = state.phone) {
                                 onIntent(PersonalDataIntent.Phone(phone = state.phone))
@@ -281,7 +270,8 @@ private fun Content(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth()
+                            .testTag(PERSONAL_EMAIL_TAG),
                         text = buildAnnotatedString {
                             withLink(LinkAnnotation.Clickable(tag = state.email) {
                                 onIntent(PersonalDataIntent.Email(email = state.email))
@@ -320,9 +310,21 @@ private fun Content(
                         text = stringResource(Res.string.address),
                         fontWeight = FontWeight.Bold
                     )
-                    Text(modifier = Modifier.fillMaxWidth(), text = state.address)
-                    Text(modifier = Modifier.fillMaxWidth(), text = state.city)
-                    Text(modifier = Modifier.fillMaxWidth(), text = state.postalCode)
+                    Text(
+                        modifier = Modifier.fillMaxWidth()
+                            .testTag(PERSONAL_ADDRESS_TAG),
+                        text = state.address
+                    )
+                    Text(
+                        modifier = Modifier.fillMaxWidth()
+                            .testTag(PERSONAL_CITY_TAG),
+                        text = state.city
+                    )
+                    Text(
+                        modifier = Modifier.fillMaxWidth()
+                            .testTag(PERSONAL_POSTAL_CODE_TAG),
+                        text = state.postalCode
+                    )
                     HorizontalDivider(modifier = Modifier.padding(end = 40.dp))
                 }
             }
@@ -346,7 +348,11 @@ private fun Content(
                         text = stringResource(Res.string.born_date),
                         fontWeight = FontWeight.Bold
                     )
-                    Text(modifier = Modifier.fillMaxWidth(), text = state.bornDate)
+                    Text(
+                        modifier = Modifier.fillMaxWidth()
+                            .testTag(PERSONAL_BORN_DATE_TAG),
+                        text = state.bornDate
+                    )
                     HorizontalDivider(modifier = Modifier.padding(end = 40.dp))
                 }
             }
@@ -371,7 +377,8 @@ private fun Content(
                         fontWeight = FontWeight.Bold
                     )
                     Text(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth()
+                            .testTag(PERSONAL_SKILLS_TAG),
                         text = state.skills.joinToString(),
                     )
                 }
@@ -390,7 +397,8 @@ private fun Content(
                         .padding(
                             horizontal = 16.dp,
                             vertical = 8.dp
-                        ), text = state.description
+                        ).testTag(PERSONAL_DESCRIPTION_TAG),
+                    text = state.description
                 )
             }
             Spacer(modifier = Modifier.height(16.dp))
@@ -404,16 +412,19 @@ private fun Content(
                 verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
                 Text(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
+                        .testTag(PERSONAL_OTHER_TITLE_TAG),
                     text = it.title,
                     fontWeight = FontWeight.Bold,
                 )
                 if (it.description.isNotBlank()) Text(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
+                        .testTag(PERSONAL_OTHER_DESCRIPTION_TAG),
                     text = it.description.replace(oldValue = "\\n", newValue = "\n"),
                 )
                 if (it.link.isNotBlank()) Text(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth()
+                        .testTag(PERSONAL_OTHER_LINK_TAG),
                     text = buildAnnotatedString {
                         withLink(LinkAnnotation.Url(url = it.link)) {
                             withStyle(
@@ -430,5 +441,46 @@ private fun Content(
                 if (index != state.other.lastIndex) HorizontalDivider()
             }
         }
+    }
+}
+
+@Composable
+private fun ErrorSnackbar(
+    paddingValues: PaddingValues,
+    state: PersonalDataState.Error,
+    snackbarHostState: SnackbarHostState,
+    onRetry: () -> Unit
+) {
+    Box(
+        modifier = Modifier.fillMaxSize()
+            .padding(paddingValues)
+            .testTag(ERROR_TAG),
+    ) {
+        val message = state.message
+        val actionLabel = stringResource(Res.string.retry)
+        LaunchedEffect(snackbarHostState) {
+            snackbarHostState.showSnackbar(
+                message = message,
+                actionLabel = actionLabel,
+            ).let { snackbarResult ->
+                if (snackbarResult == SnackbarResult.ActionPerformed) {
+                    onRetry()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun Loading(paddingValues: PaddingValues) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+            .padding(paddingValues),
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier.testTag(LOADING_TAG),
+            color = MaterialTheme.colorScheme.onPrimary,
+        )
     }
 }

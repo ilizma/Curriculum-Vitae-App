@@ -20,12 +20,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.ilizma.education.presentation.model.EducationIntent
 import com.ilizma.education.presentation.model.EducationState
 import com.ilizma.education.presentation.viewmodel.EducationScreenViewModel
+import com.ilizma.education.view.utils.COMPLEMENTARY_EDUCATION_DATE_TAG
+import com.ilizma.education.view.utils.COMPLEMENTARY_EDUCATION_HOURS_TAG
+import com.ilizma.education.view.utils.COMPLEMENTARY_EDUCATION_PLACE_TAG
+import com.ilizma.education.view.utils.COMPLEMENTARY_EDUCATION_SECTION_TITLE_TAG
+import com.ilizma.education.view.utils.COMPLEMENTARY_EDUCATION_TITLE_TAG
+import com.ilizma.education.view.utils.COMPLEMENTARY_EDUCATION_TYPE_TAG
+import com.ilizma.education.view.utils.EDUCATION_DATE_TAG
+import com.ilizma.education.view.utils.EDUCATION_PLACE_TAG
+import com.ilizma.education.view.utils.EDUCATION_TITLE_TAG
+import com.ilizma.education.view.utils.ERROR_TAG
+import com.ilizma.education.view.utils.LOADING_TAG
 import com.ilizma.resources.Res
 import com.ilizma.resources.end_date_currently
 import com.ilizma.resources.retry
@@ -54,7 +66,7 @@ fun EducationScreen(
 }
 
 @Composable
-private fun ScreenState(
+internal fun ScreenState(
     state: EducationState,
     snackbarHostState: SnackbarHostState,
     paddingValues: PaddingValues,
@@ -73,43 +85,9 @@ private fun ScreenState(
             onRetry = { onIntent(EducationIntent.Retry) },
         )
 
-        EducationState.Loading -> Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier.fillMaxSize()
-                .padding(paddingValues),
-        ) {
-            CircularProgressIndicator(
-                color = MaterialTheme.colorScheme.onPrimary,
-            )
-        }
+        EducationState.Loading -> Loading(paddingValues)
     }
 
-}
-
-@Composable
-private fun ErrorSnackbar(
-    paddingValues: PaddingValues,
-    state: EducationState.Error,
-    snackbarHostState: SnackbarHostState,
-    onRetry: () -> Unit,
-) {
-    Box(
-        modifier = Modifier.fillMaxSize()
-            .padding(paddingValues),
-    ) {
-        val message = state.message
-        val actionLabel = stringResource(Res.string.retry)
-        LaunchedEffect(snackbarHostState) {
-            snackbarHostState.showSnackbar(
-                message = message,
-                actionLabel = actionLabel,
-            ).let { snackbarResult ->
-                if (snackbarResult == SnackbarResult.ActionPerformed) {
-                    onRetry()
-                }
-            }
-        }
-    }
 }
 
 @Composable
@@ -129,12 +107,20 @@ private fun Content(
             key = { _, it -> it.title },
         ) { index, education ->
             Text(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .testTag(EDUCATION_TITLE_TAG),
                 text = education.title,
                 fontWeight = FontWeight.Bold
             )
-            Text(modifier = Modifier.fillMaxWidth(), text = education.place)
-            Row(modifier = Modifier.fillMaxWidth()) {
+            Text(
+                modifier = Modifier.fillMaxWidth()
+                    .testTag(EDUCATION_PLACE_TAG),
+                text = education.place
+            )
+            Row(
+                modifier = Modifier.fillMaxWidth()
+                    .testTag(EDUCATION_DATE_TAG)
+            ) {
                 Text(text = education.startDate)
                 Text(text = " - ")
                 Text(text = if (education.currently) stringResource(Res.string.end_date_currently) else education.endDate)
@@ -145,7 +131,8 @@ private fun Content(
         item {
             Spacer(modifier = Modifier.padding(4.dp))
             Text(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .testTag(COMPLEMENTARY_EDUCATION_SECTION_TITLE_TAG),
                 text = stringResource(Res.string.title_complementary_education),
                 fontWeight = FontWeight.Bold,
                 fontSize = 20.sp,
@@ -158,15 +145,73 @@ private fun Content(
             key = { _, it -> it.title },
         ) { index, complementaryEducation ->
             Text(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxWidth()
+                    .testTag(COMPLEMENTARY_EDUCATION_TITLE_TAG),
                 text = complementaryEducation.title,
                 fontWeight = FontWeight.Bold
             )
-            if (complementaryEducation.type.isNotBlank()) Text(modifier = Modifier.fillMaxWidth(), text = complementaryEducation.type)
-            if (complementaryEducation.hours.isNotBlank()) Text(modifier = Modifier.fillMaxWidth(), text = complementaryEducation.hours)
-            Text(modifier = Modifier.fillMaxWidth(), text = complementaryEducation.place)
-            Text(text = complementaryEducation.date)
+            if (complementaryEducation.type.isNotBlank()) Text(
+                modifier = Modifier.fillMaxWidth()
+                    .testTag(COMPLEMENTARY_EDUCATION_TYPE_TAG),
+                text = complementaryEducation.type
+            )
+            if (complementaryEducation.hours.isNotBlank()) Text(
+                modifier = Modifier.fillMaxWidth()
+                    .testTag(COMPLEMENTARY_EDUCATION_HOURS_TAG),
+                text = complementaryEducation.hours
+            )
+            Text(
+                modifier = Modifier.fillMaxWidth()
+                    .testTag(COMPLEMENTARY_EDUCATION_PLACE_TAG),
+                text = complementaryEducation.place
+            )
+            Text(
+                modifier = Modifier.fillMaxWidth()
+                    .testTag(COMPLEMENTARY_EDUCATION_DATE_TAG),
+                text = complementaryEducation.date
+            )
             if (index != state.complementaryEducation.lastIndex) HorizontalDivider()
         }
+    }
+}
+
+@Composable
+private fun ErrorSnackbar(
+    paddingValues: PaddingValues,
+    state: EducationState.Error,
+    snackbarHostState: SnackbarHostState,
+    onRetry: () -> Unit,
+) {
+    Box(
+        modifier = Modifier.fillMaxSize()
+            .padding(paddingValues)
+            .testTag(ERROR_TAG),
+    ) {
+        val message = state.message
+        val actionLabel = stringResource(Res.string.retry)
+        LaunchedEffect(snackbarHostState) {
+            snackbarHostState.showSnackbar(
+                message = message,
+                actionLabel = actionLabel,
+            ).let { snackbarResult ->
+                if (snackbarResult == SnackbarResult.ActionPerformed) {
+                    onRetry()
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun Loading(paddingValues: PaddingValues) {
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier.fillMaxSize()
+            .padding(paddingValues),
+    ) {
+        CircularProgressIndicator(
+            modifier = Modifier.testTag(LOADING_TAG),
+            color = MaterialTheme.colorScheme.onPrimary,
+        )
     }
 }

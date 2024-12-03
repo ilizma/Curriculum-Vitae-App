@@ -85,6 +85,12 @@ kotlin {
             implementation(project(":work-di"))
             // endregion
         }
+
+        androidInstrumentedTest.dependencies {
+            implementation(libs.firebase.crashlytics.ktx)
+            implementation(libs.google.firebase.analytics)
+            implementation(libs.firebase.common.ktx)
+        }
     }
 }
 
