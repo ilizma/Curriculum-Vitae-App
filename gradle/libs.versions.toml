@@ -36,7 +36,7 @@ firebaseCommonKtxVersion = "21.0.0" #Do not update the library because gitlive i
 firebaseCrashlyticsKtxVersion = "19.0.3" #Do not update the library because gitlive is using this version
 ## endregion
 ## region plugins
-agp-version = "8.7.2"
+agp-version = "8.7.3"
 compose-multiplatform-version = "1.7.0"
 ksp-plugin-version = "2.1.0-1.0.29"
 google-services-plugin-version = "4.4.2"

@@ -36,7 +36,6 @@ include(
 
     // region base
     ":view-base",
-    ":test-base",
     // endregion
 
     // resources
@@ -102,7 +101,6 @@ project(":resources").projectDir = File("core/resources")
 // endregion Resources
 
 // region Base
-project(":test-base").projectDir = File("core/test-base")
 project(":view-base").projectDir = File("core/view-base")
 // endregion Base
 // endregion CORE
