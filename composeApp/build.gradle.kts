@@ -102,8 +102,6 @@ android {
         applicationId = "com.ilizma.curriculumvitaeapp"
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
-        versionCode = ConfigData.versionCode
-        versionName = ConfigData.versionName
         testInstrumentationRunner = ConfigData.testInstrumentationRunner
     }
 
@@ -132,10 +130,16 @@ android {
         create("lrhr") {
             dimension = "variant"
             isDefault = true
+            applicationIdSuffix = ".lrhr"
+            versionCode = ConfigData.lrhrVersionCode
+            versionName = ConfigData.lrhrVersionName
         }
 
         create("ilizma") {
             dimension = "variant"
+            applicationIdSuffix = ".ilizma"
+            versionCode = ConfigData.ilizmaVersionCode
+            versionName = ConfigData.ilizmaVersionName
         }
     }
 

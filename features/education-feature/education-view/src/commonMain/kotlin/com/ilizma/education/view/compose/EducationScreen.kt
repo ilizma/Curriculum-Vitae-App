@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -42,6 +44,8 @@ import com.ilizma.resources.Res
 import com.ilizma.resources.end_date_currently
 import com.ilizma.resources.retry
 import com.ilizma.resources.title_complementary_education
+import com.ilizma.resources.ui.theme.Black
+import com.ilizma.resources.ui.theme.Grey
 import com.ilizma.view.lifecycle.collectAsStateMultiplatform
 import org.jetbrains.compose.resources.stringResource
 
@@ -130,13 +134,25 @@ private fun Content(
 
         item {
             Spacer(modifier = Modifier.padding(4.dp))
-            Text(
-                modifier = Modifier.fillMaxWidth()
-                    .testTag(COMPLEMENTARY_EDUCATION_SECTION_TITLE_TAG),
-                text = stringResource(Res.string.title_complementary_education),
-                fontWeight = FontWeight.Bold,
-                fontSize = 20.sp,
-            )
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(
+                    containerColor = Grey,
+                    contentColor = Black,
+                )
+            ) {
+                Text(
+                    modifier = Modifier.fillMaxWidth()
+                        .padding(
+                            horizontal = 16.dp,
+                            vertical = 8.dp
+                        )
+                        .testTag(COMPLEMENTARY_EDUCATION_SECTION_TITLE_TAG),
+                    text = stringResource(Res.string.title_complementary_education),
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
+                )
+            }
             Spacer(modifier = Modifier.padding(2.dp))
         }
 
@@ -158,7 +174,7 @@ private fun Content(
             if (complementaryEducation.hours.isNotBlank()) Text(
                 modifier = Modifier.fillMaxWidth()
                     .testTag(COMPLEMENTARY_EDUCATION_HOURS_TAG),
-                text = complementaryEducation.hours
+                text = "${complementaryEducation.hours}${if (complementaryEducation.hours.contains("h")) "" else "h"}"
             )
             Text(
                 modifier = Modifier.fillMaxWidth()

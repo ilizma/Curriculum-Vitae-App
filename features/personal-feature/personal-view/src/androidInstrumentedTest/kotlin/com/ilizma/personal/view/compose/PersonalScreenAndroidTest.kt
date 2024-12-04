@@ -26,7 +26,6 @@ import com.ilizma.personal.view.utils.PERSONAL_OTHER_TITLE_TAG
 import com.ilizma.personal.view.utils.PERSONAL_PHONE_TAG
 import com.ilizma.personal.view.utils.PERSONAL_POSTAL_CODE_TAG
 import com.ilizma.personal.view.utils.PERSONAL_SKILLS_TAG
-import com.ilizma.personal.view.utils.PERSONAL_SURNAME2_TAG
 import com.ilizma.personal.view.utils.PERSONAL_SURNAME_TAG
 import com.ilizma.resources.ui.theme.CurriculumVitaeAppTheme
 import kotlinx.collections.immutable.persistentListOf
@@ -97,7 +96,6 @@ class PersonalScreenAndroidTest {
         onNodeWithTag(PERSONAL_IMAGE_TAG).assertIsDisplayed()
         onNodeWithTag(PERSONAL_NAME_TAG).assertIsDisplayed()
         onNodeWithTag(PERSONAL_SURNAME_TAG).assertIsDisplayed()
-        onNodeWithTag(PERSONAL_SURNAME2_TAG).assertIsDisplayed()
         onNodeWithTag(PERSONAL_PHONE_TAG).assertIsDisplayed()
         onNodeWithTag(PERSONAL_EMAIL_TAG).assertIsDisplayed()
         onNodeWithTag(PERSONAL_ADDRESS_TAG).assertIsDisplayed()

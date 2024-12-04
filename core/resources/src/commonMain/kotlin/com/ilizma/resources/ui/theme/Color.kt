@@ -12,5 +12,6 @@ val BackgroundDay = White
 val SecondaryDay = Color(0xFFFFFBFE)
 
 val Grey = Color(0xFFF2F2F2)
-val Link = Color(0xFF0000EE)
+val LinkDay = Color(0xFF0000EE)
+val LinkNight = Color(0xFF6EB7F5)
 val Main = Color(BuildKonfig.MAIN_COLOR)

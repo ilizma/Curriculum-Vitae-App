@@ -2,7 +2,6 @@ package com.ilizma.resources.ui.theme
 
 import android.app.Activity
 import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -18,7 +17,7 @@ import androidx.core.view.WindowCompat
 private val DarkColorScheme = darkColorScheme(
     primary = Black,
     secondary = SecondaryNight,
-    //tertiary = PurpleNight,
+    tertiary = LinkNight,
     background = BackgroundNight,
     surface = Black,
     onPrimary = White,
@@ -27,7 +26,7 @@ private val DarkColorScheme = darkColorScheme(
 private val LightColorScheme = lightColorScheme(
     primary = White,
     secondary = SecondaryDay,
-    //tertiary = PurpleDay,
+    tertiary = LinkDay,
     background = BackgroundDay,
     surface = White,
     onPrimary = Black,

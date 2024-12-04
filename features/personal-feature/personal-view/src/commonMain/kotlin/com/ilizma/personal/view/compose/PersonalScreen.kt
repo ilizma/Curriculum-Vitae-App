@@ -67,7 +67,6 @@ import com.ilizma.personal.view.utils.PERSONAL_OTHER_TITLE_TAG
 import com.ilizma.personal.view.utils.PERSONAL_PHONE_TAG
 import com.ilizma.personal.view.utils.PERSONAL_POSTAL_CODE_TAG
 import com.ilizma.personal.view.utils.PERSONAL_SKILLS_TAG
-import com.ilizma.personal.view.utils.PERSONAL_SURNAME2_TAG
 import com.ilizma.personal.view.utils.PERSONAL_SURNAME_TAG
 import com.ilizma.resources.Res
 import com.ilizma.resources.address
@@ -76,8 +75,8 @@ import com.ilizma.resources.email
 import com.ilizma.resources.phone
 import com.ilizma.resources.retry
 import com.ilizma.resources.skills
+import com.ilizma.resources.ui.theme.Black
 import com.ilizma.resources.ui.theme.Grey
-import com.ilizma.resources.ui.theme.Link
 import com.ilizma.resources.ui.theme.Main
 import com.ilizma.view.lifecycle.collectAsStateMultiplatform
 import org.jetbrains.compose.resources.stringResource
@@ -152,6 +151,7 @@ private fun Content(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = Main,
+                    contentColor = Black,
                 )
             ) {
                 Column(
@@ -187,23 +187,13 @@ private fun Content(
                             fontSize = 24.sp,
                             fontWeight = FontWeight.Bold
                         )
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            horizontalArrangement = Arrangement.spacedBy(4.dp)
-                        ) {
-                            Text(
-                                modifier = Modifier.testTag(PERSONAL_SURNAME_TAG),
-                                text = state.surname,
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                            Text(
-                                modifier = Modifier.testTag(PERSONAL_SURNAME2_TAG),
-                                text = state.surname2,
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Bold
-                            )
-                        }
+                        Text(
+                            modifier = Modifier.fillMaxWidth()
+                                .testTag(PERSONAL_SURNAME_TAG),
+                            text = "${state.surname} ${state.surname2}",
+                            fontSize = 24.sp,
+                            fontWeight = FontWeight.Bold
+                        )
                     }
                 }
             }
@@ -237,7 +227,7 @@ private fun Content(
                             }) {
                                 withStyle(
                                     style = SpanStyle(
-                                        color = Link,
+                                        color = MaterialTheme.colorScheme.tertiary,
                                         textDecoration = TextDecoration.Underline
                                     )
                                 ) {
@@ -278,7 +268,7 @@ private fun Content(
                             }) {
                                 withStyle(
                                     style = SpanStyle(
-                                        color = Link,
+                                        color = MaterialTheme.colorScheme.tertiary,
                                         textDecoration = TextDecoration.Underline
                                     )
                                 ) {
@@ -390,6 +380,7 @@ private fun Content(
                 modifier = Modifier.fillMaxWidth(),
                 colors = CardDefaults.cardColors(
                     containerColor = Grey,
+                    contentColor = Black,
                 )
             ) {
                 Text(
@@ -429,7 +420,7 @@ private fun Content(
                         withLink(LinkAnnotation.Url(url = it.link)) {
                             withStyle(
                                 style = SpanStyle(
-                                    color = Link,
+                                    color = MaterialTheme.colorScheme.tertiary,
                                     textDecoration = TextDecoration.Underline
                                 )
                             ) {
