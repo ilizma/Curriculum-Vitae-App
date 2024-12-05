@@ -7,9 +7,9 @@ Curriculum Vitae App is a Compose Multiplatform application that allows to see a
 
 ## App Flow
 
-![Screen 1 - Personal](img/screens1.webp =200x)
-![Screen 2 - Academic](img/screens2.webp =200x)
-![Screen 3 - Prof. experience](img/screens3.webp =200x)
+<img src="img/screens1.webp" alt="Screen 1 - Personal" width="50%"/>
+<img src="img/screens2.webp" alt="Screen 2 - Academic" width="50%"/>
+<img src="img/screens3.webp" alt="Screen 3 - Prof. experience" width="50%"/>
 
 ## App structure description
 
