@@ -7,9 +7,9 @@ Curriculum Vitae App is a Compose Multiplatform application that allows to see a
 
 ## App Flow
 
-![Screen 1 - Personal](img/screens1.webp)
-![Screen 2 - Academic](img/screens2.webp)
-![Screen 3 - Prof. experience](img/screens3.webp)
+![Screen 1 - Personal](img/screens1.webp =200x)
+![Screen 2 - Academic](img/screens2.webp =200x)
+![Screen 3 - Prof. experience](img/screens3.webp =200x)
 
 ## App structure description
 
@@ -59,14 +59,15 @@ In this case, I do a Merge to get visible all the steps that I made.
 ### Important used libraries
 - Koin: To do the dependency injection.
 - Coroutines/Flow: To get/save data asynchronously.
-- Compose ui test and runComposeUiTest: To do the instrumentation tests.
-- Mockk: A Kotlin library to mock the objects on Tests.
-- kotlin test: To do the unit and ui tests.
+- Buildkonfig: To create variants and fields
 - NavigationComponent: To navigate between views.
 - Ktorfit, okhttp and darwin: To manage network.
 - Serialization: To manage Json.
 - Chucker: To see the network in a separated screen.
 - CustomActivityOnCrash: To see Android crashes easily in a new screen.
+- Compose ui test and runComposeUiTest: To do the instrumentation tests.
+- Mockk: A Kotlin library to mock the objects on Tests.
+- Kotlin test: To do the unit and ui tests.
 
 ### Annotation
 This project contains Unit Test for all classes, and Composable screen instrumentation tests.
