@@ -57,7 +57,7 @@ In this case, I do a Merge to get visible all the steps that I made.
 ### Important used libraries
 - Koin: To do the dependency injection.
 - Coroutines/Flow: To get/save data asynchronously.
-- Buildkonfig: To create variants and fields
+- Buildkonfig: To create variants and fields.
 - NavigationComponent: To navigate between views.
 - Ktorfit, okhttp and darwin: To manage network.
 - Serialization: To manage Json.
