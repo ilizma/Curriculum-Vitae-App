@@ -47,7 +47,7 @@ The class naming is based in the feature division, the abstracted classes are ca
 
 ## GitFlow
 
-<img src="img/gitflow.webp" alt="GitFlow" width="75%"/> <img src="img/squash.webp" alt="Squash and merge" width="25%"/>
+<img src="img/gitflow.webp" alt="GitFlow" width="50%"/> <img src="img/squash.webp" alt="Squash and merge" width="40%"/>
 
 I usually use Squash and merge for features, so that they stay as a single commit in develop, and use Merge to merge develop into master, so we have a very clean git and it's much easier to follow the flow of it.
 Github allows us to restore branches that have already been Squash and merged, so we don't lose the flow of commits for that feature.
