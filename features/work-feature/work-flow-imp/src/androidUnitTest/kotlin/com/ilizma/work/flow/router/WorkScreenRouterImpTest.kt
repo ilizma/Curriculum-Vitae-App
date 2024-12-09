@@ -1,6 +1,7 @@
 package com.ilizma.work.flow.router
 
-import com.ilizma.work.flow.navigator.WorkScreenBackCloseNavigator
+import androidx.navigation.NavHostController
+import com.ilizma.work.flow.navigator.WorkScreenBackNavigator
 import com.ilizma.work.presentation.viewmodel.WorkScreenViewModel
 import com.ilizma.work.view.router.WorkScreenRouter
 import io.mockk.MockKAnnotations
@@ -20,7 +21,10 @@ class WorkScreenRouterImpTest {
     private lateinit var viewModel: WorkScreenViewModel
 
     @RelaxedMockK
-    private lateinit var backCloseNavigator: WorkScreenBackCloseNavigator
+    private lateinit var navController: NavHostController
+
+    @RelaxedMockK
+    private lateinit var backNavigator: WorkScreenBackNavigator
 
     private lateinit var router: WorkScreenRouter
 
@@ -32,7 +36,7 @@ class WorkScreenRouterImpTest {
     private fun setup(standardTestDispatcher: TestDispatcher) {
         router = WorkScreenRouterImp(
             dispatcher = standardTestDispatcher,
-            backCloseNavigator = backCloseNavigator,
+            backNavigator = backNavigator,
         )
     }
 
@@ -46,6 +50,7 @@ class WorkScreenRouterImpTest {
         // when
         router.init(
             coroutineScope = CoroutineScope(standardTestDispatcher),
+            navController = navController,
             viewModel = viewModel,
         )
         advanceUntilIdle()

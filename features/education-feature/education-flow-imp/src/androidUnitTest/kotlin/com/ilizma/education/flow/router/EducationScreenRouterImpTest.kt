@@ -1,6 +1,7 @@
 package com.ilizma.education.flow.router
 
-import com.ilizma.education.flow.navigator.EducationScreenBackCloseNavigator
+import androidx.navigation.NavHostController
+import com.ilizma.education.flow.navigator.EducationScreenBackNavigator
 import com.ilizma.education.presentation.viewmodel.EducationScreenViewModel
 import com.ilizma.education.view.router.EducationScreenRouter
 import io.mockk.MockKAnnotations
@@ -20,7 +21,10 @@ class EducationScreenRouterImpTest {
     private lateinit var viewModel: EducationScreenViewModel
 
     @RelaxedMockK
-    private lateinit var backCloseNavigator: EducationScreenBackCloseNavigator
+    private lateinit var navController: NavHostController
+
+    @RelaxedMockK
+    private lateinit var backNavigator: EducationScreenBackNavigator
 
     private lateinit var router: EducationScreenRouter
 
@@ -32,7 +36,7 @@ class EducationScreenRouterImpTest {
     private fun setup(standardTestDispatcher: TestDispatcher) {
         router = EducationScreenRouterImp(
             dispatcher = standardTestDispatcher,
-            backCloseNavigator = backCloseNavigator,
+            backNavigator = backNavigator,
         )
     }
 
@@ -46,6 +50,7 @@ class EducationScreenRouterImpTest {
         // when
         router.init(
             coroutineScope = CoroutineScope(standardTestDispatcher),
+            navController = navController,
             viewModel = viewModel,
         )
         advanceUntilIdle()

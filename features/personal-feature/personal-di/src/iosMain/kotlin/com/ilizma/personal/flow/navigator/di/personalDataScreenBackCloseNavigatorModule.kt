@@ -1,14 +1,14 @@
 package com.ilizma.personal.flow.navigator.di
 
-import com.ilizma.personal.flow.navigator.PersonalDataScreenBackCloseNavigator
-import com.ilizma.personal.flow.navigator.PersonalDataScreenBackCloseNavigatorImp
+import com.ilizma.personal.flow.navigator.PersonalDataScreenCloseNavigator
+import com.ilizma.personal.flow.navigator.PersonalDataScreenCloseNavigatorImp
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-actual val personalDataScreenBackCloseNavigatorModule: Module = module {
+actual val personalDataScreenCloseNavigatorModule: Module = module {
 
-    factory<PersonalDataScreenBackCloseNavigator> {
-        PersonalDataScreenBackCloseNavigatorImp()
+    factory<PersonalDataScreenCloseNavigator> {
+        PersonalDataScreenCloseNavigatorImp()
     }
 
 }

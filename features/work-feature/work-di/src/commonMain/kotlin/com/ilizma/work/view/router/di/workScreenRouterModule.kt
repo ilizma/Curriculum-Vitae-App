@@ -9,7 +9,7 @@ val workScreenRouterModule: Module = module {
 
     factory<WorkScreenRouter> {
         WorkScreenRouterImp(
-            backCloseNavigator = get(),
+            backNavigator = get(),
         )
     }
 

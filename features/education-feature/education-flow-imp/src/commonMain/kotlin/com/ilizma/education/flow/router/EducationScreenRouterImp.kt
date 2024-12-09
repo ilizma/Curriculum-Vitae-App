@@ -1,6 +1,7 @@
 package com.ilizma.education.flow.router
 
-import com.ilizma.education.flow.navigator.EducationScreenBackCloseNavigator
+import androidx.navigation.NavHostController
+import com.ilizma.education.flow.navigator.EducationScreenBackNavigator
 import com.ilizma.education.presentation.model.EducationScreenNavigationAction
 import com.ilizma.education.presentation.model.EducationScreenNavigationAction.Back
 import com.ilizma.education.presentation.viewmodel.EducationScreenViewModel
@@ -12,18 +13,20 @@ import kotlinx.coroutines.launch
 
 class EducationScreenRouterImp(
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main,
-    private val backCloseNavigator: EducationScreenBackCloseNavigator,
+    private val backNavigator: EducationScreenBackNavigator,
 ) : EducationScreenRouter {
 
 
     override fun init(
         coroutineScope: CoroutineScope,
+        navController: NavHostController,
         viewModel: EducationScreenViewModel,
     ) {
         coroutineScope.launch(dispatcher) {
             viewModel.navigationAction.collect {
                 onNavigationAction(
                     action = it,
+                    navController = navController,
                 )
             }
         }
@@ -31,9 +34,12 @@ class EducationScreenRouterImp(
 
     private fun onNavigationAction(
         action: EducationScreenNavigationAction,
+        navController: NavHostController,
     ) {
         when (action) {
-            Back -> backCloseNavigator.close()
+            Back -> backNavigator.back(
+                navController = navController,
+            )
         }
     }
 

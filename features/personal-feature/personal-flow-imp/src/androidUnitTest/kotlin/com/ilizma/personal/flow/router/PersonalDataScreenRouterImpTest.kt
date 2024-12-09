@@ -1,7 +1,7 @@
 package com.ilizma.personal.flow.router
 
 import com.ilizma.personal.flow.navigator.EmailNavigator
-import com.ilizma.personal.flow.navigator.PersonalDataScreenBackCloseNavigator
+import com.ilizma.personal.flow.navigator.PersonalDataScreenCloseNavigator
 import com.ilizma.personal.flow.navigator.PhoneNavigator
 import com.ilizma.personal.presentation.viewmodel.PersonalDataScreenViewModel
 import com.ilizma.personal.view.router.PersonalDataScreenRouter
@@ -28,7 +28,7 @@ class PersonalDataScreenRouterImpTest {
     private lateinit var emailNavigator: EmailNavigator
 
     @RelaxedMockK
-    private lateinit var backCloseNavigator: PersonalDataScreenBackCloseNavigator
+    private lateinit var closeNavigator: PersonalDataScreenCloseNavigator
 
     private lateinit var router: PersonalDataScreenRouter
 
@@ -42,7 +42,7 @@ class PersonalDataScreenRouterImpTest {
             dispatcher = standardTestDispatcher,
             phoneNavigator = phoneNavigator,
             emailNavigator = emailNavigator,
-            backCloseNavigator = backCloseNavigator,
+            closeNavigator = closeNavigator,
         )
     }
 

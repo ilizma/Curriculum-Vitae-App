@@ -2,9 +2,9 @@ package com.ilizma.personal.flow.navigator
 
 import android.app.Activity
 
-class PersonalDataScreenBackCloseNavigatorImp(
+class PersonalDataScreenCloseNavigatorImp(
     private val activity: Activity
-) : PersonalDataScreenBackCloseNavigator {
+) : PersonalDataScreenCloseNavigator {
 
     override fun close() {
         activity.finish()

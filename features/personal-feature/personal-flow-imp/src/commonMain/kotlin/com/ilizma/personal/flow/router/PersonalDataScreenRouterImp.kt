@@ -1,7 +1,7 @@
 package com.ilizma.personal.flow.router
 
 import com.ilizma.personal.flow.navigator.EmailNavigator
-import com.ilizma.personal.flow.navigator.PersonalDataScreenBackCloseNavigator
+import com.ilizma.personal.flow.navigator.PersonalDataScreenCloseNavigator
 import com.ilizma.personal.flow.navigator.PhoneNavigator
 import com.ilizma.personal.presentation.model.PersonalDataScreenNavigationAction
 import com.ilizma.personal.presentation.model.PersonalDataScreenNavigationAction.Back
@@ -16,7 +16,7 @@ class PersonalDataScreenRouterImp(
     private val dispatcher: CoroutineDispatcher = Dispatchers.Main,
     private val phoneNavigator: PhoneNavigator,
     private val emailNavigator: EmailNavigator,
-    private val backCloseNavigator: PersonalDataScreenBackCloseNavigator,
+    private val closeNavigator: PersonalDataScreenCloseNavigator,
 ) : PersonalDataScreenRouter {
 
 
@@ -45,7 +45,7 @@ class PersonalDataScreenRouterImp(
                 email = action.email,
             )
 
-            Back -> backCloseNavigator.close()
+            Back -> closeNavigator.close()
         }
     }
 

@@ -11,7 +11,7 @@ actual val personalDataScreenRouterModule: Module = module {
         PersonalDataScreenRouterImp(
             phoneNavigator = get(),
             emailNavigator = get(),
-            backCloseNavigator = get(),
+            closeNavigator = get(),
         )
     }
 

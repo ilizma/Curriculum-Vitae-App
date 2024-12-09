@@ -9,7 +9,7 @@ val educationScreenRouterModule: Module = module {
 
     factory<EducationScreenRouter> {
         EducationScreenRouterImp(
-            backCloseNavigator = get(),
+            backNavigator = get(),
         )
     }
 

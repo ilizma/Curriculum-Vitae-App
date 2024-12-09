@@ -28,6 +28,7 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.coroutines)
             implementation(libs.lifecycle.viewmodel)
+            implementation(libs.navigation.compose)
 
             //region App
             implementation(project(":main-view"))
@@ -38,6 +39,8 @@ kotlin {
             implementation(project(":work-view"))
             implementation(project(":work-presentation"))
             // endregion
+
+            implementation(project(":personal-flow"))
         }
 
         androidUnitTest.dependencies {

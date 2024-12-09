@@ -50,11 +50,13 @@ private fun InitScreens(
 
     educationScreenRouter.init(
         coroutineScope = coroutineScope,
+        navController = bottomNavController,
         viewModel = educationScreenViewModel
     )
 
     workScreenRouter.init(
         coroutineScope = coroutineScope,
+        navController = bottomNavController,
         viewModel = workScreenViewModel
     )
 

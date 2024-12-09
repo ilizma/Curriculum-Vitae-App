@@ -5,7 +5,7 @@ import com.ilizma.personal.domain.usecase.di.otherUseCaseModule
 import com.ilizma.personal.domain.usecase.di.personalDataUseCaseModule
 import com.ilizma.personal.domain.usecase.di.skillsUseCaseModule
 import com.ilizma.personal.flow.navigator.di.emailNavigatorModule
-import com.ilizma.personal.flow.navigator.di.personalDataScreenBackCloseNavigatorModule
+import com.ilizma.personal.flow.navigator.di.personalDataScreenCloseNavigatorModule
 import com.ilizma.personal.flow.navigator.di.phoneNavigatorModule
 import com.ilizma.personal.presentation.viewmodel.di.personalDataScreenViewModelModule
 import com.ilizma.personal.view.router.di.personalDataScreenRouterModule
@@ -18,7 +18,7 @@ val personalDataModules: List<Module> = listOf(
     otherUseCaseModule,
     phoneNavigatorModule,
     emailNavigatorModule,
-    personalDataScreenBackCloseNavigatorModule,
+    personalDataScreenCloseNavigatorModule,
     personalDataScreenViewModelModule,
     personalDataScreenRouterModule,
 )

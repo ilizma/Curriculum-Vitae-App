@@ -28,6 +28,7 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(libs.serialization.json)
+            implementation(libs.navigation.compose)
         }
     }
 }

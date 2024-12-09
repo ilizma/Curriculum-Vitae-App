@@ -1,6 +1,6 @@
 package com.ilizma.personal.flow.navigator
 
-interface PersonalDataScreenBackCloseNavigator {
+interface PersonalDataScreenCloseNavigator {
 
     fun close()
 

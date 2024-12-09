@@ -1,6 +1,6 @@
 package com.ilizma.personal.flow.navigator
 
-class PersonalDataScreenBackCloseNavigatorImp: PersonalDataScreenBackCloseNavigator {
+class PersonalDataScreenCloseNavigatorImp: PersonalDataScreenCloseNavigator {
 
     override fun close() {
         // TODO
