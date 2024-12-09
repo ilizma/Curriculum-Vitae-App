@@ -18,7 +18,7 @@ actual val workScreenViewModelModule: Module = module {
             useCase = get(),
             mapper = WorkMapper(),
             isDebug = Platform.isDebugBinary,
-            _educationState = MutableStateFlow(WorkState.Loading),
+            _workState = MutableStateFlow(WorkState.Loading),
             _navigationAction = MutableSharedFlow(),
         )
     }
