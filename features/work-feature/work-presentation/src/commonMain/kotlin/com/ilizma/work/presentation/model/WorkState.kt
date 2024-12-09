@@ -3,17 +3,17 @@ package com.ilizma.work.presentation.model
 import androidx.compose.runtime.Immutable
 import kotlinx.collections.immutable.ImmutableList
 
-sealed class WorkState {
+sealed interface WorkState {
 
     data class Success(
         val list: ImmutableList<Work>,
-    ) : WorkState()
+    ) : WorkState
 
     @Immutable
     data class Error(
         val message: String,
-    ) : WorkState()
+    ) : WorkState
 
-    data object Loading : WorkState()
+    data object Loading : WorkState
 
 }

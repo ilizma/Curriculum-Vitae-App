@@ -23,7 +23,7 @@ The responsibility to know the other layers, are in the -imp modules; the abstra
 
 #### Data module
 Provide, send or keep the data info that the app needs to work.
-I added a DataSource with the firestore connection to be easy to get the data, and I manage the caché inside the Repository.
+I added a DataSource with the firestore connection to be easy to get the data, and I manage the cache inside the Repository.
 
 #### Domain module
 The business logic.

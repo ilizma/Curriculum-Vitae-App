@@ -3,7 +3,7 @@ package com.ilizma.personal.presentation.model
 import androidx.compose.runtime.Immutable
 import kotlinx.collections.immutable.ImmutableList
 
-sealed class PersonalDataState {
+sealed interface PersonalDataState {
 
     @Immutable
     data class Success(
@@ -20,13 +20,13 @@ sealed class PersonalDataState {
         val description: String,
         val skills: ImmutableList<String>,
         val other: ImmutableList<Other>,
-    ) : PersonalDataState()
+    ) : PersonalDataState
 
     @Immutable
     data class Error(
         val message: String,
-    ) : PersonalDataState()
+    ) : PersonalDataState
 
-    data object Loading : PersonalDataState()
+    data object Loading : PersonalDataState
 
 }

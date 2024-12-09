@@ -1,7 +1,7 @@
 package com.ilizma.work.presentation.model
 
-sealed class WorkScreenNavigationAction {
+sealed interface WorkScreenNavigationAction {
 
-    data object Back : WorkScreenNavigationAction()
+    data object Back : WorkScreenNavigationAction
 
 }

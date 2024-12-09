@@ -1,8 +1,8 @@
 package com.ilizma.work.presentation.model
 
-sealed class WorkIntent {
+sealed interface WorkIntent {
 
-    data object Retry : WorkIntent()
-    data object Back : WorkIntent()
+    data object Retry : WorkIntent
+    data object Back : WorkIntent
 
 }

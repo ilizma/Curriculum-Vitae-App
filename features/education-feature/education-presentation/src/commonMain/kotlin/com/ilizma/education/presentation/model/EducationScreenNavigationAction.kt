@@ -1,7 +1,7 @@
 package com.ilizma.education.presentation.model
 
-sealed class EducationScreenNavigationAction {
+sealed interface EducationScreenNavigationAction {
 
-    data object Back : EducationScreenNavigationAction()
+    data object Back : EducationScreenNavigationAction
 
 }
