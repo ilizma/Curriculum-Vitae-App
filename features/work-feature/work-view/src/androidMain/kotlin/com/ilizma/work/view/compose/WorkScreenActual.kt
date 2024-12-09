@@ -1,5 +1,6 @@
 package com.ilizma.work.view.compose
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
@@ -7,9 +8,34 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.ilizma.resources.ui.theme.CurriculumVitaeAppTheme
+import com.ilizma.view.lifecycle.collectAsStateMultiplatform
 import com.ilizma.work.presentation.model.Work
+import com.ilizma.work.presentation.model.WorkIntent
 import com.ilizma.work.presentation.model.WorkState
+import com.ilizma.work.presentation.viewmodel.WorkScreenViewModel
 import kotlinx.collections.immutable.persistentListOf
+
+@Composable
+actual fun WorkScreen(
+    viewModel: WorkScreenViewModel,
+    paddingValues: PaddingValues,
+    snackbarHostState: SnackbarHostState,
+) {
+    BackHandler { viewModel.onIntent(WorkIntent.Back) }
+
+    viewModel.workState
+        .collectAsStateMultiplatform(
+            initialValue = WorkState.Loading,
+        ).value
+        .let {
+            ScreenState(
+                state = it,
+                snackbarHostState = snackbarHostState,
+                paddingValues = paddingValues,
+                onIntent = { viewModel.onIntent(it) }
+            )
+        }
+}
 
 @Composable
 @PreviewLightDark

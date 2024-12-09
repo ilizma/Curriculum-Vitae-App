@@ -1,5 +1,7 @@
 package com.ilizma.education.view.compose
 
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -11,9 +13,34 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.ilizma.education.presentation.model.ComplementaryEducation
 import com.ilizma.education.presentation.model.Education
+import com.ilizma.education.presentation.model.EducationIntent
 import com.ilizma.education.presentation.model.EducationState
+import com.ilizma.education.presentation.viewmodel.EducationScreenViewModel
 import com.ilizma.resources.ui.theme.CurriculumVitaeAppTheme
+import com.ilizma.view.lifecycle.collectAsStateMultiplatform
 import kotlinx.collections.immutable.persistentListOf
+
+@Composable
+actual fun EducationScreen(
+    viewModel: EducationScreenViewModel,
+    paddingValues: PaddingValues,
+    snackbarHostState: SnackbarHostState,
+) {
+    BackHandler { viewModel.onIntent(EducationIntent.Back) }
+
+    viewModel.educationState
+        .collectAsStateMultiplatform(
+            initialValue = EducationState.Loading,
+        ).value
+        .let { state ->
+            ScreenState(
+                state = state,
+                snackbarHostState = snackbarHostState,
+                paddingValues = paddingValues,
+                onIntent = { viewModel.onIntent(it) }
+            )
+        }
+}
 
 @Composable
 @PreviewLightDark

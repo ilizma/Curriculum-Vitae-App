@@ -78,28 +78,14 @@ import com.ilizma.resources.skills
 import com.ilizma.resources.ui.theme.Black
 import com.ilizma.resources.ui.theme.Grey
 import com.ilizma.resources.ui.theme.Main
-import com.ilizma.view.lifecycle.collectAsStateMultiplatform
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun PersonalDataScreen(
+expect fun PersonalDataScreen(
     viewModel: PersonalDataScreenViewModel,
     paddingValues: PaddingValues,
     snackbarHostState: SnackbarHostState,
-) {
-    viewModel.personalDataState
-        .collectAsStateMultiplatform(
-            initialValue = PersonalDataState.Loading,
-        ).value
-        .let { state ->
-            ScreenState(
-                state = state,
-                snackbarHostState = snackbarHostState,
-                paddingValues = paddingValues,
-                onIntent = { viewModel.onIntent(it) }
-            )
-        }
-}
+)
 
 @Composable
 internal fun ScreenState(

@@ -46,28 +46,14 @@ import com.ilizma.resources.retry
 import com.ilizma.resources.title_complementary_education
 import com.ilizma.resources.ui.theme.Black
 import com.ilizma.resources.ui.theme.Grey
-import com.ilizma.view.lifecycle.collectAsStateMultiplatform
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun EducationScreen(
+expect fun EducationScreen(
     viewModel: EducationScreenViewModel,
     paddingValues: PaddingValues,
     snackbarHostState: SnackbarHostState,
-) {
-    viewModel.educationState
-        .collectAsStateMultiplatform(
-            initialValue = EducationState.Loading,
-        ).value
-        .let { state ->
-            ScreenState(
-                state = state,
-                snackbarHostState = snackbarHostState,
-                paddingValues = paddingValues,
-                onIntent = { viewModel.onIntent(it) }
-            )
-        }
-}
+)
 
 @Composable
 internal fun ScreenState(

@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import com.ilizma.resources.Res
 import com.ilizma.resources.end_date_currently
 import com.ilizma.resources.retry
-import com.ilizma.view.lifecycle.collectAsStateMultiplatform
 import com.ilizma.work.presentation.model.WorkIntent
 import com.ilizma.work.presentation.model.WorkState
 import com.ilizma.work.presentation.viewmodel.WorkScreenViewModel
@@ -38,24 +37,11 @@ import com.ilizma.work.view.utils.WORK_TITLE_TAG
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun WorkScreen(
+expect fun WorkScreen(
     viewModel: WorkScreenViewModel,
     paddingValues: PaddingValues,
     snackbarHostState: SnackbarHostState,
-) {
-    viewModel.workState
-        .collectAsStateMultiplatform(
-            initialValue = WorkState.Loading,
-        ).value
-        .let {
-            ScreenState(
-                state = it,
-                snackbarHostState = snackbarHostState,
-                paddingValues = paddingValues,
-                onIntent = { viewModel.onIntent(it) }
-            )
-        }
-}
+)
 
 @Composable
 internal fun ScreenState(

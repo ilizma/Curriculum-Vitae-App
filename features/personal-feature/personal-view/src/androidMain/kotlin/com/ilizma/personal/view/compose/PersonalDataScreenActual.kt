@@ -1,5 +1,7 @@
 package com.ilizma.personal.view.compose
 
+import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -10,9 +12,34 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.ilizma.personal.presentation.model.Other
+import com.ilizma.personal.presentation.model.PersonalDataIntent
 import com.ilizma.personal.presentation.model.PersonalDataState
+import com.ilizma.personal.presentation.viewmodel.PersonalDataScreenViewModel
 import com.ilizma.resources.ui.theme.CurriculumVitaeAppTheme
+import com.ilizma.view.lifecycle.collectAsStateMultiplatform
 import kotlinx.collections.immutable.persistentListOf
+
+@Composable
+actual fun PersonalDataScreen(
+    viewModel: PersonalDataScreenViewModel,
+    paddingValues: PaddingValues,
+    snackbarHostState: SnackbarHostState,
+) {
+    BackHandler { viewModel.onIntent(PersonalDataIntent.Back) }
+
+    viewModel.personalDataState
+        .collectAsStateMultiplatform(
+            initialValue = PersonalDataState.Loading,
+        ).value
+        .let { state ->
+            ScreenState(
+                state = state,
+                snackbarHostState = snackbarHostState,
+                paddingValues = paddingValues,
+                onIntent = { viewModel.onIntent(it) }
+            )
+        }
+}
 
 @Composable
 @PreviewLightDark
